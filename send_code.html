@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button id="btn">发送验证码</button>
+		<script type="text/javascript">
+			var oBtn = document.getElementById("btn")
+			//初始化时间
+			var time =  10
+			oBtn.onclick = function(){
+				//要把button设置成不可用 disabled属性 true
+				this.disabled = true				
+				sendCode()
+			}
+			//setTimeout也可以像setInterval一样做循环操作，要用到递归函数
+			//
+		    function sendCode(){  
+		    		time--
+		    		console.log(time)
+		    		oBtn.innerHTML = time + "s后重发"
+		    		if(time > 0){//递归出口,必须满足time大于1 否则不去调用自己
+		    		   setTimeout(sendCode, 1000)
+		    		}else{
+		    			oBtn.innerHTML = "发送验证码"
+		    			//设置成false就可以使用，可以点击
+		    			oBtn.disabled = false
+		    			time = 10
+		    		}
+		    		
+		    }
+		    
+		</script>
+	</body>
+</html>
